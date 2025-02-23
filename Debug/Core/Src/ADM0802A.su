@@ -1,3 +1,4 @@
-../Core/Src/ADM0802A.c:14:9:ADM0802A_Init	4	static
-../Core/Src/ADM0802A.c:22:6:ADM0802A_CommandWrite	16	static
-../Core/Src/ADM0802A.c:30:6:AMD0802A_DataWrite	16	static
+../Core/Src/ADM0802A.c:16:9:ADM0802A_Init	8	static
+../Core/Src/ADM0802A.c:37:6:ADM0802A_CommandWrite	16	static
+../Core/Src/ADM0802A.c:70:6:ADM0802A_DataWrite	24	static
+../Core/Src/ADM0802A.c:101:23:CharToEncoding	16	static

@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "ADM0802A.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -40,6 +40,8 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+DAC_HandleTypeDef hdac;
+
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
@@ -50,6 +52,7 @@ UART_HandleTypeDef huart2;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
+static void MX_DAC_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -89,8 +92,27 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
+  MX_DAC_Init();
   /* USER CODE BEGIN 2 */
+  HAL_DAC_Init (&hdac);
+  HAL_DAC_Start (&hdac, DAC_CHANNEL_1);
 
+  ADM0802A_Init ();
+
+  // Set CA to 3.3V/2
+  HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 2048);
+
+
+  HAL_Delay (1000);
+  ADM0802A_DataWrite ('H', false);
+  HAL_Delay (500);
+  ADM0802A_DataWrite ('E', false);
+  HAL_Delay (500);
+  ADM0802A_DataWrite ('L', false);
+  HAL_Delay (500);
+  ADM0802A_DataWrite ('L', false);
+  HAL_Delay (500);
+  ADM0802A_DataWrite ('0', false);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -138,6 +160,46 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief DAC Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_DAC_Init(void)
+{
+
+  /* USER CODE BEGIN DAC_Init 0 */
+
+  /* USER CODE END DAC_Init 0 */
+
+  DAC_ChannelConfTypeDef sConfig = {0};
+
+  /* USER CODE BEGIN DAC_Init 1 */
+
+  /* USER CODE END DAC_Init 1 */
+
+  /** DAC Initialization
+  */
+  hdac.Instance = DAC;
+  if (HAL_DAC_Init(&hdac) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** DAC channel OUT1 config
+  */
+  sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
+  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
+  if (HAL_DAC_ConfigChannel(&hdac, &sConfig, DAC_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN DAC_Init 2 */
+
+  /* USER CODE END DAC_Init 2 */
+
 }
 
 /**
@@ -192,33 +254,33 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, CA_Pin_Pin|RS_Pin_Pin|RW_Pin_Pin|E_Pin_Pin
-                          |DB0_Pin_Pin|DB1_Pin_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, RW_Pin|RS_Pin|E_Pin|DB0_Pin
+                          |DB1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, DB6_Pin_Pin|DB7_Pin_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, DB6_Pin|DB7_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, DB2_Pin_Pin|DB3_Pin_Pin|DB4_Pin_Pin|DB5_Pin_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, DB2_Pin|DB3_Pin|DB4_Pin|DB5_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : CA_Pin_Pin RS_Pin_Pin RW_Pin_Pin E_Pin_Pin
-                           DB0_Pin_Pin DB1_Pin_Pin */
-  GPIO_InitStruct.Pin = CA_Pin_Pin|RS_Pin_Pin|RW_Pin_Pin|E_Pin_Pin
-                          |DB0_Pin_Pin|DB1_Pin_Pin;
+  /*Configure GPIO pins : RW_Pin RS_Pin E_Pin DB0_Pin
+                           DB1_Pin */
+  GPIO_InitStruct.Pin = RW_Pin|RS_Pin|E_Pin|DB0_Pin
+                          |DB1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DB6_Pin_Pin DB7_Pin_Pin */
-  GPIO_InitStruct.Pin = DB6_Pin_Pin|DB7_Pin_Pin;
+  /*Configure GPIO pins : DB6_Pin DB7_Pin */
+  GPIO_InitStruct.Pin = DB6_Pin|DB7_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DB2_Pin_Pin DB3_Pin_Pin DB4_Pin_Pin DB5_Pin_Pin */
-  GPIO_InitStruct.Pin = DB2_Pin_Pin|DB3_Pin_Pin|DB4_Pin_Pin|DB5_Pin_Pin;
+  /*Configure GPIO pins : DB2_Pin DB3_Pin DB4_Pin DB5_Pin */
+  GPIO_InitStruct.Pin = DB2_Pin|DB3_Pin|DB4_Pin|DB5_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

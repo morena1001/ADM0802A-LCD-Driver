@@ -57,30 +57,30 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define CA_Pin_Pin GPIO_PIN_0
-#define CA_Pin_GPIO_Port GPIOA
-#define RS_Pin_Pin GPIO_PIN_1
-#define RS_Pin_GPIO_Port GPIOA
-#define RW_Pin_Pin GPIO_PIN_4
-#define RW_Pin_GPIO_Port GPIOA
-#define E_Pin_Pin GPIO_PIN_5
-#define E_Pin_GPIO_Port GPIOA
-#define DB0_Pin_Pin GPIO_PIN_6
-#define DB0_Pin_GPIO_Port GPIOA
-#define DB1_Pin_Pin GPIO_PIN_7
-#define DB1_Pin_GPIO_Port GPIOA
-#define DB6_Pin_Pin GPIO_PIN_4
-#define DB6_Pin_GPIO_Port GPIOC
-#define DB7_Pin_Pin GPIO_PIN_5
-#define DB7_Pin_GPIO_Port GPIOC
-#define DB2_Pin_Pin GPIO_PIN_0
-#define DB2_Pin_GPIO_Port GPIOB
-#define DB3_Pin_Pin GPIO_PIN_1
-#define DB3_Pin_GPIO_Port GPIOB
-#define DB4_Pin_Pin GPIO_PIN_2
-#define DB4_Pin_GPIO_Port GPIOB
-#define DB5_Pin_Pin GPIO_PIN_10
-#define DB5_Pin_GPIO_Port GPIOB
+#define RW_Pin GPIO_PIN_0
+#define RW_GPIO_Port GPIOA
+#define RS_Pin GPIO_PIN_1
+#define RS_GPIO_Port GPIOA
+#define CA_Pin GPIO_PIN_4
+#define CA_GPIO_Port GPIOA
+#define E_Pin GPIO_PIN_5
+#define E_GPIO_Port GPIOA
+#define DB0_Pin GPIO_PIN_6
+#define DB0_GPIO_Port GPIOA
+#define DB1_Pin GPIO_PIN_7
+#define DB1_GPIO_Port GPIOA
+#define DB6_Pin GPIO_PIN_4
+#define DB6_GPIO_Port GPIOC
+#define DB7_Pin GPIO_PIN_5
+#define DB7_GPIO_Port GPIOC
+#define DB2_Pin GPIO_PIN_0
+#define DB2_GPIO_Port GPIOB
+#define DB3_Pin GPIO_PIN_1
+#define DB3_GPIO_Port GPIOB
+#define DB4_Pin GPIO_PIN_2
+#define DB4_GPIO_Port GPIOB
+#define DB5_Pin GPIO_PIN_10
+#define DB5_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
