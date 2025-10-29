@@ -43,6 +43,7 @@ int main(void)
   HAL_DAC_Start (&hdac, DAC_CHANNEL_1);
 
   ADM0802A_Init ();
+  // ADM0802A_Init (0);
 
   // Set CA to 3.3V/2
   HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 2048);
