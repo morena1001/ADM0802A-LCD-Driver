@@ -2,7 +2,7 @@
 
 [Datasheet and register map](https://cdn.sparkfun.com/datasheets/LCD/Monochrome/ADM0802A-FSY-YBS-3.3V.pdf) used to develop this library. 
 
-Current version: 1.0.0
+Current version: 1.2.0
 
 ### Framework support
 This library only supports STM32 MCUs, with default support for the F3 line of MCUs. If not using an F3, simply change the included file in line 16 of ADM0802A.h to your desired hal file.
