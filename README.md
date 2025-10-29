@@ -32,7 +32,7 @@ Another issue is the apparent lack of higher level functions that can work with 
 
 To address all these issues, the list below maps out the direction and updates that will library will take. 
 
-- Update repo to only include library header and source files, along with a simple example file to showcase how the library works.
+- ~~Update repo to only include library header and source files, along with a simple example file to showcase how the library works.~~
 - The init function will have a list of parameters to keep track of which pins in the MCU the module will connect to.
     - The hardcoded pins will then become default pins
     - Helper functions will update the MCU pin that connects to a specific pin in the module. 
