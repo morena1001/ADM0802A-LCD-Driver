@@ -56,31 +56,14 @@ static uint16_t pin_db5;
 static uint16_t pin_db6;
 static uint16_t pin_db7;
 
-
-#define Pin_RW GPIO_PIN_0
-#define Port_RW GPIOA
-#define Pin_RS GPIO_PIN_1
-#define Port_RS GPIOA
-#define Pin_CA GPIO_PIN_4
-#define Port_CA GPIOA
-#define Pin_E GPIO_PIN_5
-#define Port_E GPIOA
-#define Pin_DB0 GPIO_PIN_6
-#define Port_DB0 GPIOA
-#define Pin_DB1 GPIO_PIN_7
-#define Port_DB1 GPIOA
-#define Pin_DB2 GPIO_PIN_0
-#define Port_DB2 GPIOB
-#define Pin_DB3 GPIO_PIN_1
-#define Port_DB3 GPIOB
-#define Pin_DB4 GPIO_PIN_2
-#define Port_DB4 GPIOB
-#define Pin_DB5 GPIO_PIN_10
-#define Port_DB5 GPIOB
-#define Pin_DB6 GPIO_PIN_4
-#define Port_DB6 GPIOC
-#define Pin_DB7 GPIO_PIN_5
-#define Port_DB7 GPIOC
+static bool inc_dec_ddram = 0;
+static bool shift_display = 0;
+static bool display_control = false;
+static bool cursor_control = false;
+static bool blink_control = false;
+static bool bus_mode_8 = false;
+static bool display_lines_2 = false;
+static bool display_format_5x11 = false;
 
 /*
  * COMMAND SHORTCUTS
@@ -112,6 +95,33 @@ void ADM0802A_CommandWrite (uint8_t command);
  */
 
 void ADM0802A_DataWrite (char character, bool upper_set);
+//void ADM0802A_DataRead ()
 
+/*
+ * HELPER FUNCTIONS
+ */
+
+void ADM0802A_ClearDisplay ();
+void ADM0802A_ReturnHome ();
+void ADM0802A_CursorMove_Right ();
+void ADM0802A_CursorMove_Left ();
+void ADM0802A_DisplayShift_On ();
+void ADM0802A_DisplayShift_Off ();
+void ADM0802A_Display_On ();
+void ADM0802A_Display_Off ();
+void ADM0802A_Cursor_On ();
+void ADM0802A_Cursor_Off ();
+void ADM0802A_CursorBlink_On ();
+void ADM0802A_CursorBlink_Off ();
+void ADM0802A_ShiftPattern_CursorLeft_CounterDec ();
+void ADM0802A_ShiftPattern_CursorRight_CounterInc ();
+void ADM0802A_ShiftPattern_DisplayLeft ();
+void ADM0802A_ShiftPattern_DisplayRight ();
+void ADM0802A_Bus_8Bit ();
+void ADM0802A_Bus_4Bit ();
+void ADM0802A_Display_1Line ();
+void ADM0802A_Display_2Line ();
+void ADM0802A_Display_Format_5x8 ();
+void ADM0802A_Display_Format_5x11 ();
 
 #endif /* INC_ADM0802A_H_ */
