@@ -11,15 +11,8 @@
 #define GPIOA "HELLO"
 #define GPIO_PIN_1 "WORLD"
 
-char* PinPair (char port, uint8_t pin) {
-	char* pair = malloc (3 * sizeof (char));
-    sprintf (pair, "%c%d", port, pin);
-    return pair;
-}
-
-char* get_port (char port) {
-    port = toupper (port);
-    switch (port) {
+char* get_port (char* port) {
+    switch (toupper (*port)) {
         #ifdef GPIOA    
             case 'A':   return PORT(A); 
         #endif
@@ -166,7 +159,7 @@ void init (char* pair) {
     char* pin = malloc (2 * sizeof (char));
     strncpy (pin, pair + 1, 2);
 
-    printf (get_port (pair[0]));
+    printf (get_port (pair));
     printf (get_pin (pin));
     // printf ("%s %d", pair, atoi(pin));
     // printf ("%c %s", pair[0], pair.substr);
@@ -174,7 +167,7 @@ void init (char* pair) {
 }
 
 int main () {
-    init (PIN_PAIR (A, 1));
+    init (PIN_PAIR (a, 1));
     // printf (PinPair ('A', 1));
     // printf (PIN_PAIR (a, 1));
     // printf (GET_PORT(A));

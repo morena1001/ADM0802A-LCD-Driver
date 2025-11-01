@@ -2,10 +2,10 @@
 
 [Datasheet and register map](https://cdn.sparkfun.com/datasheets/LCD/Monochrome/ADM0802A-FSY-YBS-3.3V.pdf) used to develop this library. 
 
-Current version: 1.0.0
+Current version: 1.2.1
 
 ### Framework support
-This library only supports STM32 MCUs, with default support for the F3 line of MCUs. If not using an F3, simply change the included file in line 16 of ADM0802A.h to your desired hal file.
+This library only supports STM32 MCUs, with default support for the F3 line of MCUs. If not using an F3, simply change the included file in line 20 of ADM0802A.h to your desired hal file.
 
 `#include "stm32f3xx_hal.h"`
 
@@ -32,7 +32,7 @@ Another issue is the apparent lack of higher level functions that can work with 
 
 To address all these issues, the list below maps out the direction and updates that will library will take. 
 
-- Update repo to only include library header and source files, along with a simple example file to showcase how the library works.
+- ~~Update repo to only include library header and source files, along with a simple example file to showcase how the library works.~~
 - The init function will have a list of parameters to keep track of which pins in the MCU the module will connect to.
     - The hardcoded pins will then become default pins
     - Helper functions will update the MCU pin that connects to a specific pin in the module. 
